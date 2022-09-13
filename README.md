@@ -1,5 +1,5 @@
 # CELESTE-FMTOWNS
-仮想ゲームマシンエンジン「PICO-8」で配信されているフリーゲーム「CELESTE Classic」をFM TOWNSに移植したものです。FM TOWNSエミュレータ「津軽」「うんづ」及びFM TOWNS MARTYで動作確認を行っています。
+仮想ゲームマシンエンジン「PICO-8」で配信されているフリーゲーム「CELESTE Classic」をFM TOWNSに移植したものです。FM TOWNSエミュレータ「津軽」「うんづ」及びFM TOWNS MARTY実機で動作確認を行っています。
 
 ゲーム自体はほぼ移植できていますが、グラフィック・サウンドの仕様の違いから微妙な差異も存在します。
 
