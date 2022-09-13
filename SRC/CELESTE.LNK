@@ -1,0 +1,15 @@
+fixed.obj
+celeste.obj
+
+-lib d:\hc386\small\fmcfrb
+-lib d:\hc386\small\snd
+-lib d:\hc386\small\tbios
+-lib d:\hc386\small\hce
+-lib d:\hc386\small\na
+-lib d:\hc386\small\msvdrv
+-stack 131072
+-tc
+-80386
+-exe celeste.exp
+
+

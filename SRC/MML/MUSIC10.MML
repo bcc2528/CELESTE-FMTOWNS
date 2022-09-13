@@ -1,0 +1,91 @@
+#nulline	skip
+#compilemode	1
+
+#include <stdmac.msh>
+
+.title		POWER UP
+.artist		Maddy & NOEL
+.fm		pico8
+.partmax	6
+.playcount	3
+.lfotype	1
+
+
+%L15
+%R15
+%C
+%C
+%C
+%C
+
+@p
+@p
+@p
+@p *
+@p *
+@p *
+
+t150 l8 @5v11 o5f>@8v3f<@5v9f>@8v3f<@5v7f>@8v3g<@5v5f>@8v3g<<@5v11a+>>@8v3f<<@5v9a+>v11d+>>@8v3c<<@5v9d+>>@8v3c<<@5v5d+v11a+>@8v3f<@5v9a+>@8v3g<@5v5a+>@8v3g<@5a+v9cv11g>@8v3f<@5v11f>>@8v3c<<@5v9f>>@8v3c
+t150 l8 @6v15 o2fffffrfga+a+a+ra+ra+d+fffrfffra+g>ccd+r<a+g
+t150 l16 @7v7 o6brv5brv3brrrv9d+v7d+v5d+v3d+v2d+r>d+r<v7brv5brv3brrrv9d+v7d+v5d+v3d+v2d+r>d+r
+*
+*
+*
+
+t150 l8 @5v11 o5f>@8v3f<@5v9f>@8v3f<@5v7f>@8v3g<@5v5f>@8v3g<<@5v11a+>>@8v3f<<@5v9a+>v11d+>>@8v3c<<@5v9d+>>@8v3c<<@5v5d+v11a+>@8v3f<@5v9a+>@8v3g<@5v5a+>@8v3g<@5a+v9cv11g>@8v3f<@5v11f>>@8v3c<<@5v9f>>@8v3c
+t150 l8 @6v15 o2fffffrfga+a+a+ra+ra+d+fffrfffra+g>ccd+r<a+g
+t150 l16 @7v7 o6brv5brv3brrrv9d+v7d+v5d+v3d+v2d+r>d+r<v7brv5brv3brrrv9d+v7d+v5d+v3d+v2d+r>d+r
+*
+*
+*
+
+t150 l16 @5v11 o5c>@8v3c<@5v11g>@8v3c<@5v9crgrv5c>@8v3a+<@5v5g>@8v3a+<@5c>@8f<@5g>@8f<<@5v11f>>@8v3d+<@5v11c>>@8v3c<<<@5v9f>>@8v3g<@5v9cr<v5fr>c@8v3a+<@5f>@8a+@5c
+t150 l8 @6v15 o3cv13cv11crv15fv13fv11frv15cv13cv15d+v13d+v15gv13g<v15a+v13a+>v15cv13cv11crv15d+v13d+v11d+r<v15a+v13a+v11a+r>v15fv13f<v15a+v13a+
+t150 l16 @7v7 o6brv5brv3brrrv9d+v7d+v5d+v3d+v2d+r>d+r<v7brv5brv3brrrv9d+v7d+v5d+v3d+v2d+r>d+r
+*
+*
+*
+
+t150 l16 @5v11 o5c>@8v3c<@5v11g>@8v3c<@5v9crgrv5c>@8v3a+<@5v5g>@8v3a+<@5c>@8f<@5g>@8f<<@5v11f>>@8v3d+<@5v11c>>@8v3c<<<@5v9f>>@8v3g<@5v9cr<v5fr>c@8v3a+<@5f>@8a+@5c
+t150 l8 @6v15 o3cv13cv11crv15fv13fv11frv15cv13cv15d+v13d+v15gv13gv15d+v13d+v15ccv13ccv11cv7crrrrrrrrrr
+t150 l16 @7v7 o6brv5brv3brrrv9d+v7d+v5d+v3d+v2d+r>d+r<v7brv5brv3brrrv9d+v7d+v5d+v3d+v2d+r>d+r
+*
+*
+*
+
+t150 l16 @8v15 o5ccv13cv11c>@1v3a+a+<<@8v11c>>@1v3a+ff<<@8v11c>>@1v3f<<@8v11crrrv15ggv13gv11grrcrv15a+a+v13a+v11a+>>@1v3ggg
+t150 l16 @4v7 o3cv6cv5cv4cv3cv2cv1crv7cv6cv5cv4cv3cv2cv1cr<v7gv6gv5gv4gv3gv2gv1grv7a+v6a+v5a+v4a+v3a+v2a+v1a+r
+t150 l16 @7v7 o6brv5brv3brrrv9d+v7d+v5d+v3d+v2d+r>d+r<v7brv5brv3brrrv9d+v7d+v5d+v3d+v2d+r>d+r
+*
+*
+*
+
+t150 l16 @8v15 o5ccv13cv11c>@1v3a+a+<<@8v11c>>@1v3a+ff<<@8v11c>>@1v3f<<@8v11crrrv15ggv13gv11grrcrv15a+a+v13a+v11a+>>@1v3ggg
+t150 l16 @4v7 o3cv6cv5cv4cv3cv2cv1crv7cv6cv5cv4cv3cv2cv1cr<v7gv6gv5gv4gv3gv2gv1grv7a+v6a+v5a+v4a+v3a+v2a+v1a+r
+t150 l16 @7v7 o6brv5brv3brrrv9d+v7d+v5d+v3d+v2d+r>d+r<v7brv5brv3brrrv9d+v7d+v5d+v3d+v2d+r>d+r
+*
+*
+*
+
+t150 l16 @8v15 o5ccv13cv11c>@1v3a+a+<<@8v11c>>@1v3a+ff<<@8v11c>>@1v3f<<@8v11crrrv15a+a+v13a+rv15ggv13grv15a+a+v13a+r>v15d+d+v13d+
+t150 l16 @4v7 o3cv6cv5cv4cv3cv2cv1crv7cv6cv5cv4cv3cv2cv1cr<v7a+v5a+>v7gv5g<v7gv5gv3grv7a+v5a+v3a+r>v7d+v5d+v3d+
+t150 l16 @7v7 o6brv5brv3brrrv9d+v7d+v5d+v3d+v2d+r>d+r<v7brv5brv3brrrv9d+v7d+v5d+v3d+v2d+r>d+r
+*
+*
+*
+
+t150 l16 @8v15 o5ccv14ccv13cv11cv9cv7cv5cv3crrrrrrrra+a+>ffd+d+<gggr>cccc
+t150 l16 @4v7 o3cv6cv5cv4cv3cv2cv1crv7cv6cv5cv4cv3cv2cv1ccccrrrrrrrrrrrrrrrrrr<v7d+v6d+v4d+v5d+
+t150 l16 @7v7 o6brv5brv3brrrv9d+v7d+v5d+v3d+v2d+r>d+r<v7brv5brv3brrrv9d+v7d+v5d+v3d+v2d+r>d+r
+*
+*
+*
+
+@j0
+@j0
+@j0
+@j0
+@j0
+@j0
+
+.end

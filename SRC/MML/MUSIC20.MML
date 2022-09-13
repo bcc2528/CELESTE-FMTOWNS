@@ -1,0 +1,98 @@
+#nulline	skip
+#compilemode	1
+
+#include <stdmac.msh>
+
+.title		CHECK POINT
+.artist		Maddy & NOEL
+.fm		pico8
+.partmax	6
+.playcount	3
+.lfotype	1
+
+%L15
+%R15
+%C
+%C
+%C
+%C
+
+@p
+@p
+@p
+@p *
+@p *
+@p *
+
+t225 l8 @7v11 o5b<<<@1v15c+c+>>>>>@7v3d+<<<<<@1v15c+>>>>>@7v3d+<<v11b<<<@1v15c+c+>>>>>@7v3d+<<<<<@1v15c+>>>>>@7v3d+<<v11b>>v3d+<<<<<@1v15c+>>>>>@7v3d+<<v11b<<<@1v15c+c+>>>>>@7v3d+<<<<<@1v15c+>>>>>@7v3d+<<v11b<<<@1v15c+c+>>>>>@7v3d+<<<<<@1v15c+>>>>>@7v3d+<<v11b>>v3d+<<<<<@1v15c+>>>>>@7v3d+
+t112 l8 @3v13 o3ccv11ccv9ccv7c<a+>v13d+d+v11d+d+v9d+d+v7d+a+v13ggv11ggv9ggv7ggv5g<v9g>v15a+v13gv11gv9gv13d+v11d+
+t225 l16 @6v15 o5c>c<v9c>c<<v13d+>d+<v15g>g<v9g>g<v7g>g<v5g>g<v3g>g<v15d+>d+<v9d+>d+<v7d+>d+<v15f>f<v9f>f<v7f>f<v15g>g<v9g>gv15c>c<v9c>c<<v13d+>d+<v15g>g<v9g>g<v7g>g<v5g>g<v3g>g<v15d+>d+<v9d+>d+<v7d+>d+<v15f>f<v9f>f<v7f>f<v15g>g<v9g>g
+*
+*
+*
+
+t225 l8 @7v11 o5b<<<@1v15c+c+>>>>>@7v3d+<<<<<@1v15c+>>>>>@7v3d+<<v11b<<<@1v15c+c+>>>>>@7v3d+<<<<<@1v15c+>>>>>@7v3d+<<v11b>>v3d+<<<<<@1v15c+>>>>>@7v3d+<<v11b<<<@1v15c+c+>>>>>@7v3d+<<<<<@1v15c+>>>>>@7v3d+<<v11b<<<@1v15c+c+>>>>>@7v3d+<<<<<@1v15c+>>>>>@7v3d+<<v11b>>v3d+<<<<<@1v15c+>>>>>@7v3d+
+t112 l8 @3v13 o3ccv11ccv9ccv7c<a+>v13d+d+v11d+d+v9d+d+v7d+a+v13ggv11ggv9ggv7ggv5g<v9g>v15a+v13gv11gv9gv13d+v11d+
+t225 l16 @6v15 o5c>c<v9c>c<<v13d+>d+<v15g>g<v9g>g<v7g>g<v5g>g<v3g>g<v15d+>d+<v9d+>d+<v7d+>d+<v15f>f<v9f>f<v7f>f<v15g>g<v9g>gv15c>c<v9c>c<<v13d+>d+<v15g>g<v9g>g<v7g>g<v5g>g<v3g>g<v15d+>d+<v9d+>d+<v7d+>d+<v15f>f<v9f>f<v7f>f<v15g>g<v9g>g
+*
+*
+*
+
+t225 l8 @3v15 o2gv13gv11gv9g>v13d+v11d+v15cv13cv11cv9cv7cv5c<v15gv13gv11gv9gv15gv13gv11gv9g>v13cv11cv15fv13fv11fv9fv13gv11gv15a+v13a+v11a+v9a+
+t225 l8 @1v15 o2c+c+c+>>>>>@7v3d+<<v11b>>v3d+d+<<<<<@1v15c+c+>>>>>@7v3d+<<<<<@1v15c+>>>>>@7v3d+<<v11b>>v3d+<<v11b>>v3d+<<<<<@1v15c+c+c+>>>>>@7v3d+<<v11b>>v3d+d+<<<<<@1v15c+c+>>>>>@7v3d+<<<<<@1v15c+>>>>>@7v3d+<<v11b>>v3d+<<v11b>>v3d+
+t225 l16 @6v15 o5c>c<v9c>c<<v13d+>d+<v15g>g<v9g>g<v7g>g<v5g>g<v3g>g<v15d+>d+<v9d+>d+<v7d+>d+<v15f>f<v9f>f<v7f>f<v15g>g<v9g>gv15c>c<v9c>c<<v13d+>d+<v15g>g<v9g>g<v7g>g<v5g>g<v3g>g<v15d+>d+<v9d+>d+<v7d+>d+<v15f>f<v9f>f<v7f>f<v15g>g<v9g>g
+*
+*
+*
+
+t225 l8 @3v15 o2gv13gv11gv9g>v13d+v11d+v15cv13cv11cv9cv7cv5c<v15gv13gv11gv9gv15gv13gv11gv9g>v13cv11cv15fv13fv11fv9fv13gv11gv15a+v13a+v11a+v9a+
+t225 l8 @1v15 o2c+c+c+>>>>>@7v3d+<<v11b>>v3d+d+<<<<<@1v15c+c+>>>>>@7v3d+<<<<<@1v15c+>>>>>@7v3d+<<v11b>>v3d+<<v11b>>v3d+<<<<<@1v15c+c+c+>>>>>@7v3d+<<v11b>>v3d+d+<<<<<@1v15c+c+>>>>>@7v3d+<<<<<@1v15c+>>>>>@7v3d+<<v11b>>v3d+<<v11b>>v3d+
+t225 l16 @6v15 o4g>g<v9g>g<v11c>c<v15d+>d+<v9d+>d+<v15c>c<v9c>c<v7c>c<v15d+>d+<v9d+>d+<v7f>f<v5f>f<v15g>g<v9g>g<v7g>g<v11d+>d+<v15g>g<v9g>g<v11c>c<v15d+>d+<v9d+>d+<v15c>c<v9c>c<v7c>c<v15d+>d+<v9d+>d+<v7f>f<v5f>f<v15g>g<v9g>g<v7g>g<v11d+>d+
+*
+*
+*
+
+t225 l8 @3v15 o2gv13gv11gv9g>v13d+v11d+v15cv13cv11cv9cv7cv5c<v15gv13gv11gv9gv15gv13gv11gv9g>v13cv11cv15fv13fv11fv9fv13gv11gv15a+v13a+v11a+v9a+
+t225 l8 @1v15 o2c+c+c+>>>>>@7v3d+<<v11b>>v3d+d+<<<<<@1v15c+c+>>>>>@7v3d+<<<<<@1v15c+>>>>>@7v3d+<<v11b>>v3d+<<v11b>>v3d+<<<<<@1v15c+c+c+>>>>>@7v3d+<<v11b>>v3d+d+<<<<<@1v15c+c+>>>>>@7v3d+<<<<<@1v15c+>>>>>@7v3d+<<v11b>>v3d+<<v11b>>v3d+
+t225 l16 @6v15 o5c>c<v9c>c<<v13d+>d+<v15g>g<v9g>g<v7g>g<v5g>g<v3g>g<v15d+>d+<v9d+>d+<v7d+>d+<v15f>f<v9f>f<v7f>f<v15g>g<v9g>gv15c>c<v9c>c<<v13d+>d+<v15g>g<v9g>g<v7g>g<v5g>g<v3g>g<v15d+>d+<v9d+>d+<v7d+>d+<v15f>f<v9f>f<v7f>f<v15g>g<v9g>g
+*
+*
+*
+
+t225 l8 @3v15 o2gv13gv11gv9g>v13d+v11d+v15cv13cv11cv9cv7cv5c<v15gv13gv11gv9gv15gv13gv11gv9g>v13cv11cv15fv13fv11fv9fv13gv11gv15a+v13a+v11a+v9a+
+t225 l8 @1v15 o2c+c+c+>>>>>@7v3d+<<v11b>>v3d+d+<<<<<@1v15c+c+>>>>>@7v3d+<<<<<@1v15c+>>>>>@7v3d+<<v11b>>v3d+<<v11b>>v3d+<<<<<@1v15c+c+c+>>>>>@7v3d+<<v11b>>v3d+d+<<<<<@1v15c+c+>>>>>@7v3d+<<<<<@1v15c+>>>>>@7v3d+<<v11b>>v3d+<<v11b>>v3d+
+t225 l16 @6v15 o4g>g<v9g>g<v11c>c<v15d+>d+<v9d+>d+<v15c>c<v9c>c<v7c>c<v15d+>d+<v9d+>d+<v7f>f<v5f>f<v15g>g<v9g>g<v7g>g<v11d+>d+<v15g>g<v9g>g<v11c>c<v15d+>d+<v9d+>d+<v15c>c<v9c>c<v7c>c<v15d+>d+<v9d+>d+<v7f>f<v5f>f<v15g>g<v9g>g<v7g>g<v11d+>d+
+*
+*
+*
+
+t225 l8 @3v15 o3fv13fv11fv9fv13gv11g>v15cv13cv11cv9cv13fv11f<v13d+>v9c<v15gv11a+v15d+v13d+v11d+v9d+v13fv11fv15a+v13a+v11a+v9a+>v13d+v11d+v15a+v9gv13c<v7g
+t112 l8 @1v9 o5ffv7fgv5fgv3fg>v9d+v8c<a+v7a+>v9cv7c<v9gv7gv9a+a+v7a+>c<v5a+>c<a+>c<v9ga+v7gv5a+v9ggv7fv5f
+t225 l8 @1v15 o2c+>>>v11@7b<<<@1v15c+>>>>>@7v3d+<<v11b>>v3d+<<<<<@1v15c+>>>>>v3@7d+<<<<<@1v15c+>>>>>@7v3d+<<v11b<<<@1v15c+>>>@7v11b>>v3d+<<<<<@1v15c+>>>>>@7v3d+<<<<<@1v15c+>>>v11@7b<<<@1v15c+>>>>>@7v3d+<<v11b>>v3d+<<<<<@1v15c+>>>>>v3@7d+<<<<<@1v15c+>>>>>@7v3d+<<v11b<<<@1v15c+>>>@7v11b>>v3d+<<<<<@1v15c+>>>>>@7v3d+
+*
+*
+*
+
+t225 l16 @6v2 o5cv3cv4cv5cv6cv7cv8cv9cv10cv11cv12cv13cv14crv15crv14crv13crv12crv11crv9crv7crv5crv3cr
+t112 l8 @3v15 o3cv13cv11cv9cv7c<v13a+v11a+v9a+>v15d+v13d+v11d+v9d+v7d+v13cv11cv9cv15cv13cv11cv9cv7c<v13a+v11a+v9a+>v15d+v13d+v11d+v9d+v7d+v13fv11fv9f
+t225 l8 @7v11 o5b<<<@1v15c+c+>>>>>@7v3d+<<<<<@1v15c+>>>>>@7v3d+<<v11b<<<@1v15c+c+>>>>>@7v3d+<<<<<@1v15c+>>>>>@7v3d+<<v11b>>v3d+<<<<<@1v15c+>>>>>@7v3d+<<v11b<<<@1v15c+c+>>>>>@7v3d+<<<<<@1v15c+>>>>>@7v3d+<<v11b<<<@1v15c+c+>>>>>@7v3d+<<<<<@1v15c+>>>>>@7v3d+<<v11b>>v3d+<<<<<@1v15c+>>>>>@7v3d+
+*
+*
+*
+
+t225 l16 @6v2 o4gv3gv4gv5gv6gv7gv8gv9gv10gv11gv12gv13gv14grv15grv14grv13grv12grv11grv9grv7grv5grv3gr
+t112 l8 @3v15 o3gv13gv11gv9gv7gv13fv11fv9fv15a+v13a+v11a+v9a+v7a+v13gv11gv9gv15gv13gv11gv9gv7gv13d+v11d+v9d+v11cv7fv13a+v9d+v15a+v11a+v15cv11c
+t225 l8 @7v11 o5b<<<@1v15c+c+>>>>>@7v3d+<<<<<@1v15c+>>>>>@7v3d+<<v11b<<<@1v15c+c+>>>>>@7v3d+<<<<<@1v15c+>>>>>@7v3d+<<v11b>>v3d+<<<<<@1v15c+>>>>>@7v3d+<<v11b<<<@1v15c+c+>>>>>@7v3d+<<<<<@1v15c+>>>>>@7v3d+<<v11b<<<@1v15c+c+>>>>>@7v3d+<<<<<@1v15c+>>>>>@7v3d+<<v11b>>v3d+<<<<<@1v15c+>>>>>@7v3d+
+*
+*
+*
+
+@j0
+@j0
+@j0
+@j0
+@j0
+@j0
+
+.end
+
