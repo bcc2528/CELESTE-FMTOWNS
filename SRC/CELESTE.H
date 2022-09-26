@@ -94,7 +94,7 @@ typedef struct
 
 typedef struct
 {
-	short x, y;
+	fixed_t x, y;
 	short size;
 } HAIR;
 
@@ -267,6 +267,7 @@ void new_bg(CLOUD* cloud, bool set);
 void spr_reset();
 void spr_not_flip(short n, short x, short y);
 void spr(short n, short x, short y, bool flip_x, bool flip_y);
+void spr_double(short n, short x, short y);
 void spr_with_palette(short n, short x, short y, short c, bool flip_x, bool flip_y);
 void print_with_spr(char const* str, short x, short y, short c);
 void draw_time(short x, short y);

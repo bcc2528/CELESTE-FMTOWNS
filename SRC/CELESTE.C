@@ -68,6 +68,8 @@ SPRING springs[MAX_SPRINGS] = { 0 };
 #define MAX_CLOUDS 16
 CLOUD clouds[MAX_CLOUDS] = { 0 };
 
+#define MAX_FRUIT 32
+bool got_fruit[MAX_FRUIT] = { false };
 
 
 // -- globals --
@@ -82,10 +84,7 @@ bool cheated = false;
 bool can_shake = true;
 bool will_restart = false;
 short delay_restart = 0;
-#define MAX_FRUIT 30
-bool got_fruit[MAX_FRUIT] = { false };
 bool has_dashed = false;
-int sfx_timer = 0;
 bool has_key = false;
 bool pause_player = false;
 bool flash_bg = false;
@@ -289,120 +288,108 @@ void music(short n, short feedms, short chmask)
 void sfx(int n, int ch)
 {
 	int steptime,datalen;
-	char msv[256];
+	static char msv[3][256];
 
 	MSVC_set_playcount(MSVWK->playcount);
 
 	switch(n)
 	{
 		case 0:
-			MSVC_line_compile("t225 l64 @4v15 o6f+ <<@5b >@4b <@5f >@4f+ <<@5b >>@4d+ <<@5g >@4b <@5f >@4f+ <@5d v13>@4d v11<@5c v9@4a+ <v7@5g+ >v5@4f+ <v3@5f", msv, &steptime, &datalen, 0, 3);
+			MSVC_line_compile("t225 l64 @4v15 o6f+ <<@5b >@4b <@5f >@4f+ <<@5b >>@4d+ <<@5g >@4b <@5f >@4f+ <@5d v13>@4d v11<@5c v9@4a+ <v7@5g+ >v5@4f+ <v3@5f*", msv[ch], &steptime, &datalen, 0, 3);
 			break;
 
 		case 1:
-			MSVC_line_compile("t225 @1v15l64 o3fg>d>c", msv, &steptime, &datalen, 0, 3);
+			MSVC_line_compile("t225 @1v15l64 o3fg>d>c*", msv[ch], &steptime, &datalen, 0, 3);
 			break;
 
 		case 2:
-			MSVC_line_compile("t150 @1v15l64 o3c+ea+>a+", msv, &steptime, &datalen, 0, 3);
+			MSVC_line_compile("t150 @1v15l64 o3c+ea+>a+*", msv[ch], &steptime, &datalen, 0, 3);
 			break;
 
 		case 3:
-			MSVC_line_compile("t225 @5v3l64 o2f+g+ab>>v9a+>v11f+>>@7c<bbaf+d<aev9c<afd<v7a+fd<v3bgv1fd+", msv, &steptime, &datalen, 0, 3);
+			MSVC_line_compile("t225 @5v3l64 o2f+g+ab>>v9a+>v11f+>>@7c<bbaf+d<aev9c<afd<v7a+fd<v3bgv1fd+*", msv[ch], &steptime, &datalen, 0, 3);
 			break;
 
 		case 4:
-			MSVC_line_compile("t225 @1v15l32 o3d+>f+<f+>a+<b>>d<v13d+>g+<v11a>>c+<v9d+>f+<v7g>a+v5c>d<v3f", msv, &steptime, &datalen, 0, 3);
+			MSVC_line_compile("t225 @1v15l32 o3d+>f+<f+>a+<b>>d<v13d+>g+<v11a>>c+<v9d+>f+<v7g>a+v5c>d<v3f*", msv[ch], &steptime, &datalen, 0, 3);
 			break;
 
 		case 5:
-			MSVC_line_compile("t150 @8v15l64 o2aav13av11av9g+v7gv5f+v3f", msv, &steptime, &datalen, 0, 3);
+			MSVC_line_compile("t150 @8v15l64 o2aav13av11av9g+v7gv5f+v3f*", msv[ch], &steptime, &datalen, 0, 3);
 			break;
 
 		case 6:
-			MSVC_line_compile("t150 @2v15l64 o5c<<d>>a<<a+>>>e<<v13g+>>b<v11e>>v9d+<<v5bv3e<f<e<d+", msv, &steptime, &datalen, 0, 3);
+			MSVC_line_compile("t150 @2v15l64 o5c<<d>>a<<a+>>>e<<v13g+>>b<v11e>>v9d+<<v5bv3e<f<e<d+*", msv[ch], &steptime, &datalen, 0, 3);
 			break;
 
 		case 7:
-			MSVC_line_compile("t225 @2v3l64 o3ef+g+a+>v5dg+>v7d>v9dd", msv, &steptime, &datalen, 0, 3);
+			MSVC_line_compile("t225 @2v3l64 o3ef+g+a+>v5dg+>v7d>v9dd*", msv[ch], &steptime, &datalen, 0, 3);
 			break;
 
 		case 8:
-			MSVC_line_compile("t150 @1v15l64 o2ga+>dea+>a+>bv13bg+v11g+bv9bg+v7g+v5bv3b", msv, &steptime, &datalen, 0, 3);
+			MSVC_line_compile("t150 @1v15l64 o2ga+>dea+>a+>bv13bg+v11g+bv9bg+v7g+v5bv3b*", msv[ch], &steptime, &datalen, 0, 3);
 			break;
 
 		case 9:
-			MSVC_line_compile("t150 @2v3l64 o2fv7g@7v9d+d+v7d+v5d+v3d+d+", msv, &steptime, &datalen, 0, 3);
+			MSVC_line_compile("t150 @2v3l64 o2fv7g@7v9d+d+v7d+v5d+v3d+d+*", msv[ch], &steptime, &datalen, 0, 3);
 			break;
 
 		case 13:
-			MSVC_line_compile("t225 @6v11l32 o3c>v13e<v15e>bc+>g+<a>>g<e>b<g+>>v13d<v11c+>v9d<v7c+>d<v5c+>d+<c+>d+<v3c+>d+<c+>d+<c+>d+<c+r", msv, &steptime, &datalen, 0, 3);
+			MSVC_line_compile("t225 @6v11l32 o3c>v13e<v15e>bc+>g+<a>>g<e>b<g+>>v13d<v11c+>v9d<v7c+>d<v5c+>d+<c+>d+<v3c+>d+<c+>d+<c+>d+<c+*", msv[ch], &steptime, &datalen, 0, 3);
 			break;
 
 		case 14:
-			MSVC_line_compile("t225 @8v9l32 o5bv13gv15d<f<aa>c+v11e<v7br", msv, &steptime, &datalen, 0, 3);
+			MSVC_line_compile("t225 @8v9l32 o5bv13gv15d<f<aa>c+v11e<v7b*", msv[ch], &steptime, &datalen, 0, 3);
 			break;
 
 		case 15:
-			MSVC_line_compile("t150 @7v9l64 o2a>v11d<f+a+>c+<f>f<g>c<ea>v9f<v7g+>v3c+", msv, &steptime, &datalen, 0, 3);
+			MSVC_line_compile("t150 @7v9l64 o2a>v11d<f+a+>c+<f>f<g>c<ea>v9f<v7g+>v3c+*", msv[ch], &steptime, &datalen, 0, 3);
 			break;
 
 		case 16:
-			MSVC_line_compile("t225 @4v15l8 o4gc>d+r", msv, &steptime, &datalen, 0, 3);
+			MSVC_line_compile("t225 @4v15l8 o4gc>d+*", msv[ch], &steptime, &datalen, 0, 3);
 			break;
 
 		case 23:
-			MSVC_line_compile("t150 @8v15l32 o4co4ffv13fv11fv9fv7fv5fv3f", msv, &steptime, &datalen, 0, 3);
+			MSVC_line_compile("t150 @8v15l32 o4co4ffv13fv11fv9fv7fv5fv3f*", msv[ch], &steptime, &datalen, 0, 3);
 			break;
 
 		case 35:
-			MSVC_line_compile("t225 @7v5l32 o6d+", msv, &steptime, &datalen, 0, 3);
+			MSVC_line_compile("t225 @7v5l32 o6d+*", msv[ch], &steptime, &datalen, 0, 3);
 			break;
 
 		case 37:
-			MSVC_line_compile("t225 @4v11l8 o3cv9cv7cv5cv11d+v9d+v7d+v5d+>v11cv9c<v11gv9g>v11c<gv9a+>v13fv15a+a+v13a+v11a+v9a+v5a+", msv, &steptime, &datalen, 0, 3);
+			MSVC_line_compile("t225 @4v11l8 o3cv9cv7cv5cv11d+v9d+v7d+v5d+>v11cv9c<v11gv9g>v11c<gv9a+>v13fv15a+a+v13a+v11a+v9a+v5a+*", msv[ch], &steptime, &datalen, 0, 3);
 			break;
 
 		case 38:
-			MSVC_line_compile("t150 @3v15l16 o4cg>c<v13cg>c<v11cg>c<v9cg>c<v7cg>c<v5cg>c<v3cg>c", msv, &steptime, &datalen, 0, 3);
+			MSVC_line_compile("t150 @3v15l16 o4cg>c<v13cg>c<v11cg>c<v9cg>c<v7cg>c<v5cg>c<v3cg>c*", msv[ch], &steptime, &datalen, 0, 3);
 			break;
 
 		case 50:
-			MSVC_line_compile("t225 @6v3l16 o4ggv5ggv7ggv9ggv11ggv13ggv15grgrv13grgrv11grgrv9grv7grv5grv3gr", msv, &steptime, &datalen, 0, 3);
+			MSVC_line_compile("t225 @6v3l16 o4ggv5ggv7ggv9ggv11ggv13ggv15grgrv13grgrv11grgrv9grv7grv5grv3g*", msv[ch], &steptime, &datalen, 0, 3);
 			break;
 
 		case 51:
-			MSVC_line_compile("t180 @8v7l32 o2d+fv9g>cv11g>v13d+> @4v15c>c<@6d+a+ @4c>c<@6d+a+ @4v13c>c<@6d+a+ @4v11c>c<@6d+a+ @4v9c>c<@6d+a+ @4v7c>c<@6v5d+a+  @4v3c>c", msv, &steptime, &datalen, 0, 3);
+			MSVC_line_compile("t180 @8v7l32 o2d+fv9g>cv11g>v13d+> @4v15c>c<@6d+a+ @4c>c<@6d+a+ @4v13c>c<@6d+a+ @4v11c>c<@6d+a+ @4v9c>c<@6d+a+ @4v7c>c<@6v5d+a+  @4v3c>c*", msv[ch], &steptime, &datalen, 0, 3);
 			break;
 
 		case 54:
-			MSVC_line_compile("t150 @4v7l64 o4g>g<@6a+>f<@4v5g>g<@6a+>f<@4v3g>g<@6a+>f", msv, &steptime, &datalen, 0, 3);
+			MSVC_line_compile("t150 @4v7l64 o4g>g<@6a+>f<@4v5g>g<@6a+>f<@4v3g>g<@6a+>f*", msv[ch], &steptime, &datalen, 0, 3);
 			break;
 
 		case 55:
-			MSVC_line_compile("t163 @4v11l16 o5frv9f>v15cv13cv11c", msv, &steptime, &datalen, 0, 3);
+			MSVC_line_compile("t163 @4v11l16 o5frv9f>v15cv13cv11c*", msv[ch], &steptime, &datalen, 0, 3);
 			break;
 
 		default:
-			MSVC_line_compile("t120 @1v1l8", msv, &steptime, &datalen, 0, 3);
+			MSVC_line_compile("t120 @1v1l8 *", msv[ch], &steptime, &datalen, 0, 3);
 			break;
 	}
 
-
-	//ch += 3;
-	ch = 3;
-	MSV_partstop(ch);
-	MSV_partplay(ch , msv);
+	MSV_partstop(ch + 3);
+	MSV_partplay(ch + 3, msv[ch]);
 }
-
-void psfx(int n)
-{
-	if(sfx_timer <= 0) {
-		sfx(n, 0);
-	}
-}
-
-
 
 
 
@@ -714,7 +701,7 @@ void title_screen()
 
 	fill_background_color(0);
 
-	for (i = 0; i < 30; i++)
+	for (i = 0; i < 32; i++)
 	{
 		got_fruit[i] = false;
 	}
@@ -941,7 +928,6 @@ void player_init(PLAYER* this, short x, short y)
 
 void kill_player(PLAYER* this)
 {
-	sfx_timer = 12;
 	sfx(0, 1);
 	deaths++;
 	shake = 10;
@@ -1015,7 +1001,7 @@ void player_update(PLAYER* this)
 		this->grace = 6;
 		if (this->djump < max_djump)
 		{
-			psfx(54);
+			sfx(54, 0);
 			this->djump = max_djump;
 		}
 	}
@@ -1101,7 +1087,7 @@ void player_update(PLAYER* this)
 			if (this->grace > 0)
 			{
 				//-- normal jump
-				psfx(1);
+				sfx(1, 0);
 				this->jbuffer = 0;
 				this->grace = 0;
 				this->obj.spd.y = -131072; //-2
@@ -1113,7 +1099,7 @@ void player_update(PLAYER* this)
 				short wall_dir = obj_is_solid(&(this->obj), 3, 0) - obj_is_solid(&(this->obj), -3, 0);
 				if (wall_dir != 0)
 				{
-					psfx(2);
+					sfx(2, 0);
 					this->jbuffer = 0;
 					this->obj.spd.y = -131072; //-2
 					this->obj.spd.x = -wall_dir * (maxrun + 65536);
@@ -1165,7 +1151,7 @@ void player_update(PLAYER* this)
 				}
 			}
 
-			psfx(3);
+			sfx(3, 0);
 			freeze = 2;
 			shake = 6;
 			this->dash_target.x = 131072 * sign(this->obj.spd.x);
@@ -1189,7 +1175,7 @@ void player_update(PLAYER* this)
 		}
 		else if (dash && this->djump <= 0)
 		{
-			psfx(9);
+			sfx(9, 0);
 			smoke_init(this->obj.x, this->obj.y);
 		}
 	}
@@ -1260,7 +1246,7 @@ void player_draw(PLAYER* this)
 
 void player_spawn_init(PLAYER_SPAWN* this, short x, short y)
 {
-	sfx(4, 1);
+	sfx(4, 0);
 	this->active = true;
 	this->x = x;
 	this->y = y;
@@ -1308,7 +1294,7 @@ void player_spawn_update(PLAYER_SPAWN* this)
 			this->delay = 5;
 			shake = 5;
 			smoke_init(this->x, this->y + 4);
-			sfx(5, 1);
+			sfx(5, 0);
 		}
 	}
 	//-- landing
@@ -1339,7 +1325,7 @@ void create_hair(short x, short y)
 	{
 		hair[i].x = x << 16;
 		hair[i].y = y << 16;
-		hair[i].size = 122 + max(1, min(3,4-i));
+		hair[i].size = 122 + max(1, min(2,4-i));
 	}
 }
 
@@ -1369,7 +1355,7 @@ void set_hair_color(short djump)
 void draw_hair(short x, short y, short flip)
 {
 	fixed_t last_x = (x - flip * 2) << 16;
-	fixed_t last_y = (y + (down_now ? 1 : 0)) << 16;
+	fixed_t last_y = (y + (down_now ? 3 : 2)) << 16;
 	HAIR* hair_temp;
 
 	for(int i = 0; i < MAX_HAIR;i++)
@@ -1439,7 +1425,7 @@ void spring_update(SPRING* this)
 					}
 				}
 
-				psfx(8);
+				sfx(8, 1);
 			}
 		}
 	}
@@ -1497,7 +1483,7 @@ void balloon_update(BALLOON* this)
 		{
 			if (obj_collide(&(this->obj), &(player.obj), 0,0))
 			{
-				psfx(6);
+				sfx(6, 2);
 				smoke_init(this->obj.x, this->obj.y);
 				player.djump = max_djump;
 				this->obj.spr = 0;
@@ -1510,7 +1496,7 @@ void balloon_update(BALLOON* this)
 	}
 	else
 	{
-		psfx(7);
+		sfx(7, 2);
 		smoke_init(this->obj.x, this->obj.y);
 		this->obj.spr = 22;
 	}
@@ -1521,7 +1507,7 @@ void balloon_draw(BALLOON* this)
 	if(this->obj.spr == 22)
 	{
 		spr_not_flip(22, this->obj.x, this->obj.y);
-		spr_not_flip(13 + (((this->offset >> 15) * 8) % 3), this->obj.x, this->obj.y + 6);
+		spr_not_flip(13 + ((this->offset >> 14) % 3), this->obj.x, this->obj.y + 6);
 	}
 }
 
@@ -1565,7 +1551,7 @@ void fall_floor_update(FALL_FLOOR* this)
 		{
 			if (!obj_collide(&(this->obj), &(player.obj), 0, 0))
 			{
-				psfx(7);
+				sfx(7, 2);
 				this->state = 0;
 				this->obj.collideable = true;
 				room_tiles[this->obj.x / 8][this->obj.y / 8] = 23;
@@ -1579,7 +1565,7 @@ void break_fall_floor(FALL_FLOOR* this)
 {
 	if (this->state == 0)
 	{
-		psfx(15);
+		sfx(15, 1);
 		this->state = 1;
 		this->delay = 15; //--how long until it falls
 		smoke_init(this->obj.x, this->obj.y);
@@ -1718,7 +1704,6 @@ void fruit_update(FRUIT* this)
 	if (obj_collide(&(this->obj), &(player.obj), 0, 0) )
 	{
 		player.djump = max_djump;
-		sfx_timer = 20;
 		sfx(13, 2);
 		got_fruit[1 + level_index()] = true;
 		lifeup_init(&lifeup, this->obj.x, this->obj.y);
@@ -1756,7 +1741,6 @@ void fly_fruit_update(FLY_FRUIT* this)
 			this->sfx_delay -= 1;
 			if (this->sfx_delay <= 0)
 			{
-				sfx_timer = 20;
 				sfx(14, 2);
 			}
 		}
@@ -1780,7 +1764,6 @@ void fly_fruit_update(FLY_FRUIT* this)
 	if (obj_collide(&(this->obj), &(player.obj), 0, 0))
 	{
 		player.djump = max_djump;
-		sfx_timer = 20;
 		sfx(13, 2);
 		got_fruit[1 + level_index()] = true;
 		lifeup_init(&lifeup, this->obj.x, this->obj.y);
@@ -1790,22 +1773,24 @@ void fly_fruit_update(FLY_FRUIT* this)
 
 void fly_fruit_draw(FLY_FRUIT* this)
 {
-	fixed_t off = 0;
+	short off = 0;
+
 	if (!this->fly)
 	{
 		if (sin(this->step) < 0)
 		{
-			off = 65536 + (max(0, sign(this->obj.y - this->start) << 16));
+			off = 1 + max(0, (sign(this->start - this->obj.y)));
 		}
 	}
 	else
 	{
-		off = (off + 16384) % 3;
+		off = 0;
 	}
 
-	spr(45 + (off >> 16), this->obj.x - 6, this->obj.y - 2, true, false);
+	spr(45 + off, this->obj.x - 6, this->obj.y - 2, true, false);
 	spr_not_flip(this->obj.spr, this->obj.x, this->obj.y);
-	spr(45 + (off >> 16), this->obj.x + 6, this->obj.y - 2, false, false);
+	spr(45 + off, this->obj.x + 6, this->obj.y - 2, false, false);
+
 }
 
 void fake_wall_init(OBJ* this,short  x, short y)
@@ -1839,7 +1824,6 @@ void fake_wall_update(OBJ* this)
 			player.obj.spd.x = -sign(player.obj.spd.x) * 98304;
 			player.obj.spd.y = -98304; //-1.5
 			player.dash_time = 0;
-			sfx_timer = 20;
 			sfx(16, 1);
 			this->active = false;
 			smoke_init(this->x, this->y);
@@ -1860,10 +1844,8 @@ void fake_wall_update(OBJ* this)
 
 void fake_wall_draw(OBJ* this)
 {
-	spr_not_flip(64, this->x, this->y);
-	spr_not_flip(65, this->x + 8, this->y);
-	spr_not_flip(80, this->x, this->y + 8);
-	spr_not_flip(81, this->x + 8, this->y + 8);
+	spr_double(64, this->x, this->y);
+	spr_double(80, this->x, this->y + 8);
 }
 
 void key_init(OBJ* this, short x, short y)
@@ -1889,7 +1871,6 @@ void key_update(OBJ* this)
 	if (obj_collide(this, &(player.obj), 0, 0))
 	{
 		sfx(23, 1);
-		sfx_timer = 10;
 		this->active = false;
 		has_key = true;
 	}
@@ -1924,8 +1905,7 @@ void chest_update(CHEST* this)
 		this->obj.x = this->start - 1 + rnd(3);
 		if (this->timer <= 0)
 		{
-			sfx_timer = 20;
-			sfx(16, 2);
+			sfx(16, 1);
 			fruit_init(&(fruit), this->obj.x, this->obj.y - 4);
 			destroy_object(&(this->obj));
 		}
@@ -1985,8 +1965,7 @@ void platform_update(PLATFORM* this)
 
 void platform_draw(PLATFORM* this)
 {
-	spr_not_flip(11, this->obj.x, this->obj.y);
-	spr_not_flip(12, this->obj.x + 8, this->obj.y);
+	spr_double(11, this->obj.x, this->obj.y);
 }
 
 void message_init(MESSAGE* this, short x, short y)
@@ -2073,8 +2052,7 @@ void big_chest_draw(BIG_CHEST* this)
 			this->timer = 75;
 			//this.particles = {}
 		}
-		spr_not_flip(96, this->obj.x, this->obj.y);
-		spr_not_flip(97, this->obj.x + 8, this->obj.y);
+		spr_double(96, this->obj.x, this->obj.y);
 	}
 	else if (this->state == 1)
 	{
@@ -2101,8 +2079,7 @@ void big_chest_draw(BIG_CHEST* this)
 			pause_player=false;
 		}
 
-		spr_not_flip(112, this->obj.x, this->obj.y + 8);
-		spr_not_flip(113, this->obj.x + 8, this->obj.y + 8);
+		spr_double(112, this->obj.x, this->obj.y + 8);
 	}
 }
 
@@ -2137,7 +2114,7 @@ void orb_draw(ORB* this)
 	int off =  (frames << 16) / 30;
 	for(int i = 0;i <= 7;i++)
 	{
-		spr_not_flip(73, this->obj.x + ((cos((off + (i << 16)) / 8) * 8) >> 16), this->obj.y + ((sin((off + (i << 16)) / 8) * 8) >> 16));
+		spr_not_flip(74, this->obj.x + ((cos((off + (i << 16)) / 8) * 8) >> 16) + 1, this->obj.y + ((sin((off + (i << 16)) / 8) * 8) >> 16) + 1);
 	}
 }
 
@@ -2235,7 +2212,6 @@ void flag_draw(FLAG* this)
 	else if(obj_collide(&(this->obj),&(player.obj),0,0))
 	{
 		sfx(55, 2);
-		sfx_timer = 30;
 		this->show = true;
 	}
 }
@@ -2352,10 +2328,6 @@ void celeste_update()
 		if (music_timer <= 0) {
 			music(10,0,7);
 		}
-	}
-
-	if (sfx_timer > 0) {
-		sfx_timer -= 1;
 	}
 
 	//-- cancel if freeze
@@ -2594,7 +2566,6 @@ void spr(short n, short x, short y, bool flip_x, bool flip_y)
 	}
 
 	int sprram_offset = (1023 - sprite_number) << 2;
-	short attribute;
 
 	sprram[sprram_offset++] = x;
 	sprram[sprram_offset++] = y;
@@ -2603,11 +2574,11 @@ void spr(short n, short x, short y, bool flip_x, bool flip_y)
 	{
 		if(flip_y == true)
 		{
-			attribute = 0x9c80;
+			sprram[sprram_offset++] = 0x9c80 + n;
 		}
 		else
 		{
-			attribute = 0xac80;
+			sprram[sprram_offset++] = 0xac80 + n;
 		}
 
 	}
@@ -2615,18 +2586,45 @@ void spr(short n, short x, short y, bool flip_x, bool flip_y)
 	{
 		if(flip_y == true)
 		{
-			attribute = 0xbc80;
+			sprram[sprram_offset++] = 0xbc80 + n;
 		}
 		else
 		{
-			attribute = 0x8c80;
+			sprram[sprram_offset++] = 0x8c80 + n;
 		}
 	}
 
-	sprram[sprram_offset++] = attribute + n;
 	sprram[sprram_offset] = 0x8100;
 
 	sprite_number++;
+}
+
+void spr_double(short n, short x, short y)
+{
+	_Far unsigned short *sprram;
+	_FP_SEG(sprram) = 0x130;
+	_FP_OFF(sprram) = 0x0;
+
+	//spr(obj.spr,obj.x,obj.y,1,1,obj.flip.x,obj.flip.y)
+	if (sprite_number >= 1023)
+	{
+		return;
+	}
+
+	int sprram_offset = ((1023 - sprite_number) << 2) + 3;
+
+	sprram[sprram_offset--] = 0x8100;
+	n = 0x8c80 + n;
+	sprram[sprram_offset--] = n++;
+	sprram[sprram_offset--] = y;
+	sprram[sprram_offset--] = x;
+	x += 8;
+	sprram[sprram_offset--] = 0x8100;
+	sprram[sprram_offset--] = n;
+	sprram[sprram_offset--] = y;
+	sprram[sprram_offset] = x;
+
+	sprite_number += 2;
 }
 
 void spr_with_palette(short n, short x, short y, short c, bool flip_x, bool flip_y)
@@ -2643,7 +2641,6 @@ void spr_with_palette(short n, short x, short y, short c, bool flip_x, bool flip
 	}
 
 	int sprram_offset = (1023 - sprite_number) << 2;
-	short attribute;
 
 	sprram[sprram_offset++] = x;
 	sprram[sprram_offset++] = y;
@@ -2652,11 +2649,11 @@ void spr_with_palette(short n, short x, short y, short c, bool flip_x, bool flip
 	{
 		if(flip_y == true)
 		{
-			attribute = 0x9c80;
+			sprram[sprram_offset++] = 0x9c80 + n;
 		}
 		else
 		{
-			attribute = 0xac80;
+			sprram[sprram_offset++] = 0xac80 + n;
 		}
 
 	}
@@ -2664,15 +2661,14 @@ void spr_with_palette(short n, short x, short y, short c, bool flip_x, bool flip
 	{
 		if(flip_y == true)
 		{
-			attribute = 0xbc80;
+			sprram[sprram_offset++] = 0xbc80 + n;
 		}
 		else
 		{
-			attribute = 0x8c80;
+			sprram[sprram_offset++] = 0x8c80 + n;
 		}
 	}
 
-	sprram[sprram_offset++] = attribute + n;
 	sprram[sprram_offset] = 0x8100 + c;
 
 	sprite_number++;
@@ -2684,56 +2680,6 @@ void print_with_spr(char const* str, short x, short y, short c)
 	{
 		spr_with_palette(128 + str[i], x, y, c, 0, 0);
 	}
-}
-
-void draw_object(OBJ* obj)
-{
-	_Far unsigned short *sprram;
-	_FP_SEG(sprram) = 0x130;
-	_FP_OFF(sprram) = 0x0;
-
-	//spr(obj.spr,obj.x,obj.y,1,1,obj.flip.x,obj.flip.y)
-
-	if (sprite_number >= 1024)
-	{
-		return;
-	}
-
-	int sprram_offset = (1023 - sprite_number) << 2;
-	short attribute;
-
-	sprram[sprram_offset++] = obj->x;
-	sprram[sprram_offset++] = obj->y;
-
-	if (obj->flip.x == true)
-	{
-		if(obj->flip.y == true)
-		{
-			attribute = 0x9c80;
-		}
-		else
-		{
-			attribute = 0xac80;
-		}
-
-	}
-	else
-	{
-		if(obj->flip.y == true)
-		{
-			attribute = 0xbc80;
-		}
-		else
-		{
-			attribute = 0x8c80;
-		}
-	}
-
-	sprram[sprram_offset++] = attribute + obj->spr;
-	sprram[sprram_offset] = 0x8100;
-
-	sprite_number++;
-
 }
 
 void draw_time(short x, short y)
@@ -2791,7 +2737,7 @@ void clouds_draw()
 	_FP_SEG(sprram) = 0x130;
 	_FP_OFF(sprram) = 0x0;
 
-	short i, x, s;
+	short i, x, c, s;
 
 	int sprram_offset = ((1023 - sprite_number) << 2) + 3;
 
@@ -2805,16 +2751,17 @@ void clouds_draw()
 			this->y = rnd(120);
 		}
 
+		c = 0x8100 + this->c;
 		s = 0x8c80 + this->s;
 
 		for(x=0; x <= 32;x += 8)
 		{
-			sprram[sprram_offset--] = 0x8100 + this->c;
+			sprram[sprram_offset--] = c;
 			sprram[sprram_offset--] = s;
 			sprram[sprram_offset--] = this->y;
 			sprram[sprram_offset--] = this->x + x;
-			sprite_number++;
 		}
+		sprite_number += 5;
 
 	}
 }
