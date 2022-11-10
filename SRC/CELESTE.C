@@ -651,10 +651,12 @@ void celeste_init()
 
 	EGB_writePage(work, 1);
 	EGB_displayStart(work, 0, 128, 24);
+	EGB_displayStart(work, 1, 0, 0);
 	EGB_displayStart(work, 2, 3, 3);
 	EGB_displayStart(work, 3, 128, 128);
 	EGB_writePage(work, 0);
 	EGB_displayStart(work, 0, 128, 24);
+	EGB_displayStart(work, 1, 0, 0);
 	EGB_displayStart(work, 2, 16, 16);
 	EGB_displayStart(work, 3, 24, 24);
 	EGB_color(work, 1, 0x8000);
@@ -664,6 +666,7 @@ void celeste_init()
 	//EGB_writePage(work, 0);
 
 	SPR_init();
+	SPR_setOffset(0, 0);
 
 	fp_spr = fopen("CELESTE.PAT", "rb");
 	fread(SP_PAT, sizeof(short), 16384, fp_spr);
@@ -1358,7 +1361,8 @@ void draw_hair(short x, short y, short flip)
 	fixed_t last_y = (y + (down_now ? 3 : 2)) << 16;
 	HAIR* hair_temp;
 
-	for(int i = 0; i < MAX_HAIR;i++)
+	//for(int i = 0; i < MAX_HAIR;i++)
+	for(int i = MAX_HAIR - 1; i >= 0;i--)
 	{
 		hair_temp = &(hair[i]);
 		hair_temp->x += FixedDiv((last_x - hair_temp->x), 98304);
