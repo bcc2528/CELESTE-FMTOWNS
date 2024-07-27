@@ -124,7 +124,14 @@ bool dash_now;
 // -- helper functions --
 // ----------------------
 
-#define rnd(a) (rand() % (a))
+//#define rnd(a) (rand() % (a))
+int rand_num = 1;
+int rnd(int a)
+{
+	rand_num = rand_num * 1103515245 + 12345;
+	return (rand_num & 2147483647) % a;
+}
+
 #define maybe() (rnd(2) < 1)
 //#define max(a,b) ((a) > (b) ? (a) : (b))
 //#define min(a,b) ((a) < (b) ? (a) : (b))
