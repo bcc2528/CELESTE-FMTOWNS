@@ -2408,41 +2408,49 @@ void celeste_update()
 		fruit_update(&fruit);
 	}
 
-	for(i = 0;i < MAX_BALLOONS;i++)
-	{
+	i = 0;
+	do {
 		BALLOON* this = &(balloons[i]);
 		if(this->obj.active)
 		{
 			balloon_update(this);
 		}
-	}
 
-	for(i = 0;i < MAX_SPRINGS;i++)
-	{
+		i++;
+	} while(i < MAX_BALLOONS);
+
+	i = 0;
+	do {
 		SPRING* this = &(springs[i]);
 		if(this->obj.active)
 		{
 			spring_update(this);
 		}
-	}
 
-	for(i = 0;i < MAX_FALL_FLOORS;i++)
-	{
+		i++;
+	} while(i < MAX_SPRINGS);
+
+	i = 0;
+	do {
 		FALL_FLOOR* this = &(fall_floors[i]);
 		if(this->obj.active)
 		{
 			fall_floor_update(this);
 		}
-	}
 
-	for(i = 0;i < MAX_PLATFORMS;i++)
-	{
+		i++;
+	} while(i < MAX_FALL_FLOORS);
+
+	i = 0;
+	do {
 		PLATFORM* this = &(platforms[i]);
 		if(this->obj.active)
 		{
 			platform_update(this);
 		}
-	}
+
+		i++;
+	} while(i < MAX_PLATFORMS);
 
 	// -- start game
 	if (is_title())
@@ -2494,16 +2502,21 @@ void fill_background_color(short c)
 	_FP_SEG(vram) = 0x104;
 	_FP_OFF(vram) = 0x0;
 
+	int x, y;
 	int offset = 0;
+	short color = base_palette[c];
 
-	for(int y = 0;y < 24;y++)
-	{
-		for(int x = 0;x < 26;x++)
-		{
-			vram[offset++] = base_palette[c];
-		}
+	y = 0;
+	do {
+		x = 0;
+		do {
+			vram[offset++] = color;
+			x++;
+		} while(x < 26);
 		offset += 230;
-	}
+
+		y++;
+	} while(y < 24);
 }
 
 void camera(int x, int y)
@@ -2581,7 +2594,7 @@ void spr(short n, short x, short y, bool flip_x, bool flip_y)
 	sprram[sprram_offset++] = x;
 	sprram[sprram_offset++] = y;
 
-	if (flip_x == true)
+	/*if (flip_x == true)
 	{
 		if(flip_y == true)
 		{
@@ -2603,7 +2616,8 @@ void spr(short n, short x, short y, bool flip_x, bool flip_y)
 		{
 			sprram[sprram_offset++] = 0x8c80 + n;
 		}
-	}
+	}*/
+	sprram[sprram_offset++] = (flip_x ? (flip_y ? 0x9c80 : 0xac80) : (flip_y ? 0xbc80 : 0x8c80)) + n;
 
 	sprram[sprram_offset] = 0x8100;
 
@@ -2716,12 +2730,12 @@ void particle_draw()
 	_FP_SEG(sprram) = 0x130;
 	_FP_OFF(sprram) = 0x0;
 
-	short i;
+	int i;
 
 	int sprram_offset = ((1023 - sprite_number) << 2) + 3;
 
-	for(i = 0;i < MAX_PARTICLES;i++)
-	{
+	i = 0;
+	do {
 		PARTICLE* this = &(particles[i]);
 		this->x += this->spd >> 16;
 		this->y += sin(this->off) >> 15;
@@ -2737,7 +2751,8 @@ void particle_draw()
 		sprram[sprram_offset--] = this->y;
 		sprram[sprram_offset--] = this->x;
 
-	}
+		i++;
+	} while(i < MAX_PARTICLES);
 
 	sprite_number += MAX_PARTICLES;
 }
@@ -2748,12 +2763,13 @@ void clouds_draw()
 	_FP_SEG(sprram) = 0x130;
 	_FP_OFF(sprram) = 0x0;
 
-	short i, x, c, s;
+	int i;
+	short x, c, s;
 
 	int sprram_offset = ((1023 - sprite_number) << 2) + 3;
 
-	for(i = 0;i < MAX_CLOUDS;i++)
-	{
+	i = 0;
+	do {
 		CLOUD* this = &(clouds[i]);
 		this->x += this->spd;
 		if(this->x >= 130)
@@ -2765,16 +2781,18 @@ void clouds_draw()
 		c = 0x8100 + this->c;
 		s = 0x8c80 + this->s;
 
-		for(x=0; x <= 32;x += 8)
-		{
+		x = 0;
+		do {
 			sprram[sprram_offset--] = c;
 			sprram[sprram_offset--] = s;
 			sprram[sprram_offset--] = this->y;
 			sprram[sprram_offset--] = this->x + x;
-		}
+			x += 8;
+		} while(x <= 32);
 		sprite_number += 5;
 
-	}
+		i++;
+	} while(i < MAX_CLOUDS);
 }
 
 void bg_draw()
@@ -2783,7 +2801,7 @@ void bg_draw()
 	_FP_SEG(sprram) = 0x130;
 	_FP_OFF(sprram) = 0x0;
 
-	short x, y;
+	int x, y;
 
 	if (sprite_number >= 769)
 	{
@@ -2792,16 +2810,19 @@ void bg_draw()
 
 	int sprram_offset = ((1023 - sprite_number) << 2) + 3;
 
-	for(x = 0; x < 16;x++)
-	{
-		for(y = 0; y < 16;y++)
-		{
+	x = 0;
+	do {
+		y=0;
+		do {
 			sprram[sprram_offset--] = 0x8100;
 			sprram[sprram_offset--] = 0x8c80 + room_tiles[x][y];
 			sprram[sprram_offset--] = y << 3;
 			sprram[sprram_offset--] = x << 3;
-		}
-	}
+			y++;
+		} while(y < 16);
+
+		x++;
+	} while(x < 16);
 
 	sprite_number += 256;
 }
@@ -2817,7 +2838,7 @@ void spr_hidden(int number)
 
 void celeste_draw()
 {
-	short i;
+	int i;
 
 	particle_draw();
 
@@ -2862,8 +2883,8 @@ void celeste_draw()
 	}
 	else
 	{
-		for (i = 0; i < MAX_DEAD_PARTICLES;i++)
-		{
+		i = 0;
+		do {
 			DEAD_PARTICLE* this = &(dead_particles[i]);
 			if(this->active)
 			{
@@ -2876,7 +2897,9 @@ void celeste_draw()
 				}
 				dead_particle_draw(this);
 			}
-		}
+
+			i++;
+		} while(i < MAX_DEAD_PARTICLES);
 	}
 
 	// --big chest
@@ -2933,42 +2956,50 @@ void celeste_draw()
 		flag_draw(&(flag));
 	}
 
-	for(i = 0; i < MAX_BALLOONS; i++)
-	{
+	i = 0;
+	do {
 		BALLOON* this = &(balloons[i]);
 		if(this->obj.active)
 		{
 			balloon_draw(this);
 		}
-	}
 
-	for(i = 0; i < MAX_SPRINGS; i++)
-	{
+		i++;
+	} while(i < MAX_BALLOONS);
+
+	i = 0;
+	do {
 		SPRING* this = &(springs[i]);
 		if(this->obj.active)
 		{
 			spring_draw(this);
 		}
-	}
 
-	for(i = 0;i < MAX_FALL_FLOORS;i++)
-	{
+		i++;
+	} while(i < MAX_SPRINGS);
+
+	i = 0;
+	do {
 		FALL_FLOOR* this = &(fall_floors[i]);
 		if(this->obj.active)
 		{
 			fall_floor_draw(this);
 		}
-	}
+
+		i++;
+	} while(i < MAX_FALL_FLOORS);
 
 	// --platforms
-	for (i = 0; i < MAX_PLATFORMS; i++)
-	{
+	i = 0;
+	do {
 		PLATFORM* this = &(platforms[i]);
 		if(this->obj.active)
 		{
 			platform_draw(this);
 		}
-	}
+
+		i++;
+	} while(i < MAX_PLATFORMS);
 
 	if(is_title())
 	{
@@ -3032,7 +3063,7 @@ int main()
 
 	title_screen();
 
-	while(_kbhit() == 0)
+	do
 	{
 		if(!game_pause)
 		{
@@ -3064,7 +3095,7 @@ int main()
 			game_pause = false;
 			title_screen();
 		}
-	}
+	} while(_kbhit() == 0);
 
 	SPR_display(0, 1);
 	SPR_init();
